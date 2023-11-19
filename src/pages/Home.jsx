@@ -18,34 +18,34 @@ const Home = () => {
 
     const token = localStorage.getItem('token');
 
-    const fetchNotes = async () => {
-        try {
-            // Make a GET request to your getAllNotes API endpoint with the token in the header
-            const response = await axios.get(`${endpoint}/getAllNotes`, {
-                headers: {
-                    Authorization: token,
-                },
-            });
-
-            // Handle the response
-            if (response.status === 200) {
-                const fetchedNotes = response.data.notes;
-
-                // Update the state with the fetched notes
-                setNotes(fetchedNotes);
-
-                console.log('Notes fetched successfully:', fetchedNotes);
-            } else {
-                // Handle other status codes or error responses
-                console.error('Failed to fetch notes:', response.data.error);
-            }
-        } catch (error) {
-            console.error('An error occurred during note fetching:', error);
-        }
-    };
+    
 
     useEffect(() => {
-
+        const fetchNotes = async () => {
+            try {
+                // Make a GET request to your getAllNotes API endpoint with the token in the header
+                const response = await axios.get(`${endpoint}/getAllNotes`, {
+                    headers: {
+                        Authorization: token,
+                    },
+                });
+    
+                // Handle the response
+                if (response.status === 200) {
+                    const fetchedNotes = response.data.notes;
+    
+                    // Update the state with the fetched notes
+                    setNotes(fetchedNotes);
+    
+                    console.log('Notes fetched successfully:', fetchedNotes);
+                } else {
+                    // Handle other status codes or error responses
+                    console.error('Failed to fetch notes:', response.data.error);
+                }
+            } catch (error) {
+                console.error('An error occurred during note fetching:', error);
+            }
+        };
         // Call the fetchNotes function when the component mounts
         fetchNotes();
     }, [token]);
