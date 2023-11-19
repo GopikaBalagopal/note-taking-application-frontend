@@ -134,7 +134,7 @@ const Home = () => {
                 // Update the state with the updated note
                 setNotes((prevNotes) =>
                     prevNotes.map((note) =>
-                        note.id === selectedNote.id ? updatedNoteFromServer : note
+                        note._id === selectedNote._id ? updatedNoteFromServer : note
                     )
                 );
 
